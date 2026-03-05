@@ -52,7 +52,8 @@ public class SecurityConfig {
         config.setAllowedOrigins(List.of(
                 "http://localhost:5174",
                 "http://localhost:80",
-                "https://sorrentino-gomez.duckdns.org"
+                "https://sorrentino-gomez.duckdns.org",
+                "https://sbiro.duckdns.org"
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
