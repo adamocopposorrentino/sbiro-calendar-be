@@ -33,7 +33,7 @@ public class CalendarService {
         CalendarDataResponse response = new CalendarDataResponse();
 
         // 1. Totale utenti nel gruppo
-        response.totalUsers = (int) utenteRepository.count();
+        response.totalUsers = (int) utenteRepository.countByGroupId(currentUser.getGroup().getId());
 
         // 2. I miei giorni
         response.myDays = availabilityRepository.findByUser_Id(currentUser.getId())

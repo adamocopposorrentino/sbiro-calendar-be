@@ -16,6 +16,8 @@ import sorrentino.sbirocalendar.entity.User;
 import sorrentino.sbirocalendar.repository.GroupRepository;
 import sorrentino.sbirocalendar.repository.UserRepository;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -66,6 +68,6 @@ public class AuthController {
         User user = new User(request.getUsername(),
                 passwordEncoder.encode(request.getPassword()));
         userRepository.save(user);
-        return ResponseEntity.ok("Utente creato: " + user.getUsername());
+        return ResponseEntity.ok(Map.of("message", "Utente creato: " + user.getUsername()));
     }
 }
