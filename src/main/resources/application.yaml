@@ -16,6 +16,8 @@ spring:
     show-sql: 'true'
 server:
   port: 8082
+  servlet:
+    context-path: /sbiro
 # JWT — in produzione sovrascrivere con variabili d'ambiente
 jwt:
   secret: ${JWT_SECRET:cambia-questa-stringa-in-produzione-deve-essere-lunga}
