@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import sorrentino.sbirocalendar.configuration.JwtUtil;
 import sorrentino.sbirocalendar.dto.LoginRequest;
 import sorrentino.sbirocalendar.dto.LoginResponse;
+import sorrentino.sbirocalendar.dto.RegisterRequest;
 import sorrentino.sbirocalendar.entity.Group;
 import sorrentino.sbirocalendar.entity.User;
 import sorrentino.sbirocalendar.repository.GroupRepository;
@@ -58,7 +59,7 @@ public class AuthController {
     // POST /api/auth/register — da usare solo in locale per creare i primi utenti
     // In produzione puoi rimuovere o proteggere questo endpoint
     @PostMapping("/register")
-    public ResponseEntity<?> register(@Valid @RequestBody LoginRequest request) {
+    public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest request) {
         if (userRepository.findByUsername(request.getUsername()).isPresent()) {
             return ResponseEntity.badRequest().body("Username già esistente");
         }
