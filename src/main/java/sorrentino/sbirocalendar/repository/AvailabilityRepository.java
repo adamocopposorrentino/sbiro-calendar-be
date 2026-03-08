@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface AvailabilityRepository extends JpaRepository<Availability, Integer> {
 
     List<Availability> findByUser_IdAndGroup_Id(Long userId, Long groupId);
+    List<Availability> findByGroup_id(Long groupId);
     List<Availability> findByUser_IdNotAndGroup_Id(Long userId, Long groupId);
     Optional<Availability> findByUser_IdAndDayAndGroup_Id(Long userId, Integer day, Long groupId);
 

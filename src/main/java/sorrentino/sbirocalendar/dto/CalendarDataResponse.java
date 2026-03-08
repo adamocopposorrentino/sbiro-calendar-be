@@ -4,16 +4,16 @@ import java.util.List;
 import java.util.Map;
 
 public class CalendarDataResponse {
-    public int totalUsers;
+    public List<String> totalUsers;
     public List<Integer> myDays;
     // Mappa il giorno (es. "5") alla lista di nomi (es. ["Marco", "Giulia"])
     public Map<String, List<String>> othersAvailability;
 
-    public int getTotalUsers() {
+    public List<String> getTotalUsers() {
         return totalUsers;
     }
 
-    public void setTotalUsers(int totalUsers) {
+    public void setTotalUsers(List<String> totalUsers) {
         this.totalUsers = totalUsers;
     }
 

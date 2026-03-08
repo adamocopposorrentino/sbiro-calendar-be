@@ -5,7 +5,7 @@ package sorrentino.sbirocalendar.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "availability", schema = "nuovo_applicativo_db")
+@Table(name = "availability")
 public class Availability {
 
     @Id
