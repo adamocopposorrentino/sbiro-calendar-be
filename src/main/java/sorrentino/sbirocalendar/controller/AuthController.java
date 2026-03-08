@@ -47,8 +47,9 @@ public class AuthController {
         }
 
         // Trova o crea il group
-        Group group = groupRepository .findByName(request.getGroup())
-                .orElseGet(() -> groupRepository.save(new Group(request.getGroup())));
+        String groupName = request.getGroup().trim().toUpperCase();
+        Group group = groupRepository .findByName(groupName)
+                .orElseGet(() -> groupRepository.save(new Group(groupName)));
 
         // Aggiorna il group dell'utente
         user.setGroup(group);
