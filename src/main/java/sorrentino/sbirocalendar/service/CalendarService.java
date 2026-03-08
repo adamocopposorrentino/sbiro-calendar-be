@@ -35,7 +35,7 @@ public class CalendarService {
         // 1. Totale utenti nel gruppo
         Long currentGroup = currentUser.getGroup().getId();
         response.totalUsers = availabilityRepository.findByGroup_id(currentGroup)
-                .stream().map(e -> e.getUser().getGroup().getName()).toList();
+                .stream().map(e -> e.getUser().getUsername()).toList();
 
         // 2. I miei giorni
         response.myDays = availabilityRepository.findByUser_IdAndGroup_Id(currentUser.getId(), currentGroup)
