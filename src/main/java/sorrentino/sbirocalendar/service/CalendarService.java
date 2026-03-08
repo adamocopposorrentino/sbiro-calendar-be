@@ -33,17 +33,18 @@ public class CalendarService {
         CalendarDataResponse response = new CalendarDataResponse();
 
         // 1. Totale utenti nel gruppo
-        response.totalUsers = (int) utenteRepository.countByGroupId(currentUser.getGroup().getId());
+        Long currentGroup = currentUser.getGroup().getId();
+        response.totalUsers = (int) utenteRepository.countByGroupId(currentGroup);
 
         // 2. I miei giorni
-        response.myDays = availabilityRepository.findByUser_Id(currentUser.getId())
+        response.myDays = availabilityRepository.findByUser_IdAndGroup_Id(currentUser.getId(), currentGroup)
                 .stream()
                 .map(Availability::getDay)
                 .collect(Collectors.toList());
 
         // 3. Disponibilità degli altri (Mappa: Giorno -> Lista Nomi)
         List<Availability> othersDisponibilita = availabilityRepository
-                .findByUser_IdNot(currentUser.getId());
+                .findByUser_IdNotAndGroup_Id(currentUser.getId(), currentGroup);
 
         response.othersAvailability = othersDisponibilita.stream()
                 .collect(Collectors.groupingBy(
@@ -60,7 +61,7 @@ public class CalendarService {
                 .orElseThrow(() -> new RuntimeException("Utente non trovato"));
 
         // Cerca se esiste già la disponibilità per quel giorno
-        availabilityRepository.findByUser_idAndDay(currentUser.getId(), day).ifPresentOrElse(
+        availabilityRepository.findByUser_IdAndDayAndGroup_Id(currentUser.getId(), day, currentUser.getGroup().getId()).ifPresentOrElse(
                 // Se esiste, eliminala (toglie la disponibilità)
                 availabilityRepository::delete,
 
